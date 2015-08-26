@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app='app' ng-controller="mapCtrl">
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <h1 id="title">EXPLORE</h1>
+
+    <div id='journey'>
+    <div id="panel">
+      Select city:
+      <select ng-model="city" name="submitCity" id="start" value="OMG">
+        <option value="SF">San Francisco</option>
+        <option value="NY">New York</option>
+        <option value="AT">Austin</option>
+        <option value="HK">Hong Kong</option>
+        <option value="LN">London</option>
+        <input ng-click='submit(city)' type='submit' value="Let's Go!"/>
+        <input ng-click='stop()' type='submit' value="Pause"/>
+      </select>
+    </div>
+    </div>
+   </br>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+  </head>
+  <body>
+
+  <script type="text/javascript">
+
+    function initialize() {
+      var city = new google.maps.LatLng(25.44, -26.71);
+      var mapOptions = {
+        center: city,
+        zoom: 3,
+        disableDefaultUI:true
+      };
+
+      var map = new google.maps.Map(document.getElementById('map-canvas-start'), mapOptions);
+    };
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+  </script>
+
+    <div id="map-canvas-start" style="width:100%; height: 80%;"></div>
+    <div id="map-canvas" style="width:50%; height: 80%;float:left"></div>
+    <div id="pano" style="width: 50%; height: 80%;float:right"></div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="app/app.js"></script>
+
+  </body>
+</html>
